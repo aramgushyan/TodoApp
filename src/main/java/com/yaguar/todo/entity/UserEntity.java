@@ -1,7 +1,6 @@
 package com.yaguar.todo.entity;
 
 import jakarta.persistence.*;
-import lombok.Data;
 import lombok.*;
 
 @Getter
