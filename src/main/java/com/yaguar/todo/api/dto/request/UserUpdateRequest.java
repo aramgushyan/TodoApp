@@ -1,4 +1,4 @@
-package com.yaguar.todo.api.dto.response;
+package com.yaguar.todo.api.dto.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,8 +9,6 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserResponse {
-    private Long id;
-
+public class UserUpdateRequest {
     private String username;
 }

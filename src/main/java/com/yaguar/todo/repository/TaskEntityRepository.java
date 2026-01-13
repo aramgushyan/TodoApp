@@ -1,12 +1,14 @@
 package com.yaguar.todo.repository;
 
+import com.yaguar.todo.entity.ColumnEntity;
 import com.yaguar.todo.entity.TaskEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface TaskEntityRepository extends JpaRepository<TaskEntity,Long> {
-    List<TaskEntity> findAllByUser_Id(long userId);
+    List<TaskEntity> findAllByColumn(ColumnEntity columnEntity);
 
-    TaskEntity findByIdAndUser_Id(long id, long userId);
+    Optional<TaskEntity> findByIdAndColumn(long id, ColumnEntity columnEntity);
 }

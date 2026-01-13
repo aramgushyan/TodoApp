@@ -9,8 +9,11 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserResponse {
+public class TypeResponse {
     private Long id;
 
-    private String username;
+    private String name;
+    private String description;
+
+    private Long userId;
 }

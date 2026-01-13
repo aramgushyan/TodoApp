@@ -17,7 +17,7 @@ public class TypeEntity {
     private String name;
     private String description;
 
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id",  nullable = false)
     @ManyToOne(fetch = FetchType.LAZY)
     private UserEntity user;
 }

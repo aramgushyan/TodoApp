@@ -12,9 +12,9 @@ import lombok.*;
 public class ColumnEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-    
-    private Integer order;
+    private Long id;
+
+    private Integer orderNumber;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn( name = "board_id", nullable = false )
