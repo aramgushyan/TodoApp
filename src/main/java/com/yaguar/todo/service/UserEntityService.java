@@ -9,7 +9,7 @@ import java.util.List;
 public interface UserEntityService {
     UserResponse findById(Long id);
     List<UserResponse> findAllUsers();
-    void addUser(UserAddRequest userRequest);
+    Long addUser(UserAddRequest userRequest);
     void removeUser(Long id);
     void updateUser(Long id,UserUpdateRequest userUpdateRequest);
 }

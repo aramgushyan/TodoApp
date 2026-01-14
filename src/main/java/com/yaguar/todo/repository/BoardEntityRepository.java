@@ -11,6 +11,4 @@ public interface BoardEntityRepository extends JpaRepository<BoardEntity,Long> {
     List<BoardEntity> findAllByUser(UserEntity user);
 
     Optional<BoardEntity> findByIdAndUser(Long id, UserEntity user);
-
-    Optional<BoardEntity> findByIdAndName(Long id, String name);
 }

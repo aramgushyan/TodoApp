@@ -15,6 +15,7 @@ public interface TypeMapper {
     @Mapping(source = "user.id", target = "userId")
     TypeResponse toResponse(TypeEntity typeEntity);
 
+    @Mapping(source = "userId", target = "user.id")
     TypeEntity toEntity(TypeAddRequest typeAddRequest);
 
     List<TypeResponse> toResponseList(List<TypeEntity> typeEntities);

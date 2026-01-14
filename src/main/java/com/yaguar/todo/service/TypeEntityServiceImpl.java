@@ -43,6 +43,10 @@ public class TypeEntityServiceImpl implements TypeEntityService {
 
     @Override
     public void addType(TypeAddRequest typeAddRequest) {
+
+        var user =  userEntityRepository.findById(typeAddRequest.getUserId())
+                .orElseThrow(() -> new EntityNotFoundException("User not found"));
+
         var type = typeMapper.toEntity(typeAddRequest);
 
         typeEntityRepository.save(type);

@@ -34,9 +34,11 @@ public class UserEntityServiceImpl implements UserEntityService {
     }
 
     @Override
-    public void addUser(UserAddRequest userRequest) {
+    public Long addUser(UserAddRequest userRequest) {
         UserEntity userEntity = userMapper.toEntity(userRequest);
         userEntityRepository.save(userEntity);
+
+        return  userEntity.getId();
     }
 
     @Override

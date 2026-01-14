@@ -18,9 +18,9 @@ public class UserController {
     private final UserEntityService userEntityService;
 
     @PostMapping
-    public ResponseEntity<Void> createUser(@RequestBody UserAddRequest user) {
-        userEntityService.addUser(user);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+    public ResponseEntity<Long> createUser(@RequestBody UserAddRequest user) {
+        var id = userEntityService.addUser(user);
+        return ResponseEntity.status(HttpStatus.CREATED).body(id);
     }
 
     @GetMapping("/allUsers")
