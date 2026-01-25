@@ -7,7 +7,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 import java.util.Optional;
 
-public interface TypeEntityRepository extends JpaRepository<TypeEntity,Long> {
+public interface TypeRepository extends JpaRepository<TypeEntity, Long> {
     List<TypeEntity> findAllByUser(UserEntity user);
     Optional<TypeEntity> findByIdAndUser(Long id,UserEntity user);
+    void deleteByIdAndUser(Long id, UserEntity user);
 }

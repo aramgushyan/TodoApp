@@ -6,10 +6,10 @@ import com.yaguar.todo.api.dto.response.UserResponse;
 
 import java.util.List;
 
-public interface UserEntityService {
-    UserResponse findById(Long id);
+public interface UserService {
+    UserResponse findUserById(Long id);
     List<UserResponse> findAllUsers();
     Long addUser(UserAddRequest userRequest);
-    void removeUser(Long id);
-    void updateUser(Long id,UserUpdateRequest userUpdateRequest);
+    void deleteUser(Long id);
+    void updateUser(Long id, UserUpdateRequest userUpdateRequest);
 }

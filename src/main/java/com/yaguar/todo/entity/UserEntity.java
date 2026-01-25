@@ -3,17 +3,17 @@ package com.yaguar.todo.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+@Table( name = "users")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table( name = "users")
 public class UserEntity {
-
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY )
     private Long id;
 
+    @Column(nullable = false)
     private String username;
 }

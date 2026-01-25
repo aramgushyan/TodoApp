@@ -3,8 +3,8 @@ package com.yaguar.todo.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-@Entity
 @Table (name = "types")
+@Entity
 @Getter
 @Setter
 @AllArgsConstructor
@@ -14,7 +14,10 @@ public class TypeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private String name;
+
+    @Column(nullable = false)
     private String description;
 
     @JoinColumn(name = "user_id",  nullable = false)

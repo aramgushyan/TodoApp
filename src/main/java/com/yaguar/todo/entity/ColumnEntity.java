@@ -3,17 +3,18 @@ package com.yaguar.todo.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+@Table( name = "columns")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table( name = "columns")
 public class ColumnEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private Integer orderNumber;
 
     @ManyToOne(fetch = FetchType.LAZY)
