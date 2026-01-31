@@ -17,7 +17,7 @@ import java.util.List;
 public class BoardController {
     private final BoardService boardService;
 
-    @GetMapping("/allBoards/{id}")
+    @GetMapping("/allUserBoards/{id}")
     public ResponseEntity<List<BoardResponse>>  getAllUserBoards(@PathVariable Long id) {
         var boards = boardService.findAllByUserId(id);
         return ResponseEntity.ok().body(boards);
@@ -32,7 +32,7 @@ public class BoardController {
     }
 
     @PostMapping()
-    public ResponseEntity<Long> addUserBoard(BoardAddRequest boardAddRequest) {
+    public ResponseEntity<Long> addUserBoard(@RequestBody BoardAddRequest boardAddRequest) {
         var id = boardService.addBoard(boardAddRequest);
         return ResponseEntity.status(HttpStatus.CREATED).body(id);
     }
@@ -48,8 +48,7 @@ public class BoardController {
     public ResponseEntity<Void> updateUserBoard
             (@PathVariable Long userId,
              @PathVariable Long id,
-             @RequestBody BoardUpdateRequest boardUpdateRequest)
-    {
+             @RequestBody BoardUpdateRequest boardUpdateRequest) {
         boardService.updateBoard(boardUpdateRequest, userId, id);
         return ResponseEntity.noContent().build();
     }

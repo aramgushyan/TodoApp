@@ -7,9 +7,10 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class TypeResponse {
+
+public class ColumnResponse {
     private Long id;
-    private String name;
-    private String description;
-    private Long userId;
+    private Integer orderNumber;
+    private Long boardId;
+    private Long typeId;
 }

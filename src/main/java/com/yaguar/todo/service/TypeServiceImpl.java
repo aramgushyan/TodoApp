@@ -11,17 +11,20 @@ import com.yaguar.todo.repository.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class TypeServiceImpl implements TypeService {
     private final TypeRepository typeRepository;
     private final UserRepository userRepository;
     private final TypeMapper typeMapper;
 
     @Override
+    @Transactional(readOnly = true)
     public List<TypeResponse> findAllByUserId(Long userId) {
         var user =  findUserById(userId);
 
@@ -31,6 +34,7 @@ public class TypeServiceImpl implements TypeService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public TypeResponse findByIdAndUserId(Long id, Long userId) {
         var user = findUserById(userId);
 
@@ -40,12 +44,14 @@ public class TypeServiceImpl implements TypeService {
     }
 
     @Override
-    public void addType(TypeAddRequest typeAddRequest) {
+    public Long addUserType(TypeAddRequest typeAddRequest) {
         var user =  findUserById(typeAddRequest.getUserId());
 
         var type = typeMapper.toEntity(typeAddRequest);
 
         typeRepository.save(type);
+
+        return type.getId();
     }
 
     @Override
@@ -58,7 +64,7 @@ public class TypeServiceImpl implements TypeService {
     }
 
     @Override
-    public void updateType(Long id, Long userId,TypeUpdateRequest typeUpdateRequest) {
+    public void updateUserType(Long id, Long userId, TypeUpdateRequest typeUpdateRequest) {
         var user =  findUserById(userId);
 
         var type = findTypeById(id, user);

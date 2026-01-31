@@ -8,8 +8,12 @@ import java.util.List;
 
 public interface TypeService {
     List<TypeResponse> findAllByUserId(Long userId);
+
     TypeResponse findByIdAndUserId(Long id, Long userId);
-    void addType(TypeAddRequest typeAddRequest);
+
+    Long addUserType(TypeAddRequest typeAddRequest);
+
     void deleteByIdAndUserId(Long id, Long userId);
-    void updateType(Long id, Long userId,TypeUpdateRequest typeUpdateRequest);
+
+    void updateUserType(Long id, Long userId, TypeUpdateRequest typeUpdateRequest);
 }

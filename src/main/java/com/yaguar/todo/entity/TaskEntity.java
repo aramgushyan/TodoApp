@@ -6,10 +6,9 @@ import lombok.*;
 
 import java.time.LocalDateTime;
 
-@Table( name = "tasks")
+@Table( name = "tasks" )
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 @Entity
 public class TaskEntity {
@@ -17,19 +16,19 @@ public class TaskEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column( nullable = false )
     private String title;
 
-    @Column(nullable = false)
+    @Column( nullable = false )
     private String description;
 
-    @Column(nullable = false)
+    @Column( nullable = false )
     private LocalDateTime createdAt;
 
-    @Column(nullable = false)
+    @Column()
     private LocalDateTime updatedAt;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn( name = "column_id", nullable = false )
+    @JoinColumn( name = "column_id")
     private ColumnEntity column;
 }

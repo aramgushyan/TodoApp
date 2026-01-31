@@ -9,25 +9,31 @@ import com.yaguar.todo.repository.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
 
     @Override
+    @Transactional(readOnly = true)
     public UserResponse findUserById(Long id) {
         UserEntity userEntity = userRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("User not found"));
+
         return userMapper.toResponse(userEntity);
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<UserResponse> findAllUsers() {
         List<UserEntity> userEntityList = userRepository.findAll();
+
         return userMapper.toResponseList(userEntityList);
     }
 
@@ -57,7 +63,5 @@ public class UserServiceImpl implements UserService {
                 .orElseThrow(() -> new EntityNotFoundException("User not found"));
 
         userMapper.updateEntityFromDto(userUpdateRequest, userEntity);
-
-        userRepository.save(userEntity);
     }
 }

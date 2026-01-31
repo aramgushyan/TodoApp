@@ -7,7 +7,6 @@ import lombok.*;
 @Entity
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 public class TypeEntity {
     @Id
@@ -20,7 +19,7 @@ public class TypeEntity {
     @Column(nullable = false)
     private String description;
 
-    @JoinColumn(name = "user_id",  nullable = false)
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id",  nullable = false )
     private UserEntity user;
 }

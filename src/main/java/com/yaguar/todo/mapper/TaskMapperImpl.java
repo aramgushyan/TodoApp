@@ -1,0 +1,63 @@
+package com.yaguar.todo.mapper;
+
+import com.yaguar.todo.api.dto.request.TaskAddRequest;
+import com.yaguar.todo.api.dto.request.TaskUpdateRequest;
+import com.yaguar.todo.api.dto.response.TaskResponse;
+import com.yaguar.todo.entity.ColumnEntity;
+import com.yaguar.todo.entity.TaskEntity;
+import org.springframework.stereotype.Component;
+
+import java.time.LocalDateTime;
+import java.util.List;
+
+@Component
+public class TaskMapperImpl implements TaskMapper {
+    @Override
+    public TaskEntity toEntity(TaskAddRequest taskAddRequest) {
+        var task =  new TaskEntity();
+        var columnEntity = new ColumnEntity();
+
+        columnEntity.setId(taskAddRequest.getColumnId());
+
+        task.setTitle(taskAddRequest.getTitle());
+        task.setDescription(taskAddRequest.getDescription());
+        task.setCreatedAt(LocalDateTime.now());
+        task.setColumn(columnEntity);
+
+        return task;
+    }
+
+    @Override
+    public TaskResponse toResponse(TaskEntity taskEntity) {
+        var task = new TaskResponse();
+
+        task.setId(taskEntity.getId());
+        task.setTitle(taskEntity.getTitle());
+        task.setDescription(taskEntity.getDescription());
+        task.setCreatedAt(taskEntity.getCreatedAt());
+        task.setUpdatedAt(taskEntity.getUpdatedAt());
+        task.setColumnId(taskEntity.getColumn().getId());
+
+        return task;
+    }
+
+    @Override
+    public TaskEntity updateEntity(TaskUpdateRequest taskUpdateRequest, TaskEntity taskEntity) {
+        var columnEntity = new ColumnEntity();
+        columnEntity.setId(taskUpdateRequest.getColumnId());
+
+        taskEntity.setTitle(taskUpdateRequest.getTitle());
+        taskEntity.setDescription(taskUpdateRequest.getDescription());
+        taskEntity.setUpdatedAt(LocalDateTime.now());
+        taskEntity.setColumn(columnEntity);
+
+        return taskEntity;
+    }
+
+    @Override
+    public List<TaskResponse> toResponse(List<TaskEntity> taskEntities) {
+        return taskEntities.stream()
+                .map((taskEntity) -> toResponse(taskEntity))
+                .toList();
+    }
+}

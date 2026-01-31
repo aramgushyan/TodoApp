@@ -10,17 +10,20 @@ import com.yaguar.todo.repository.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class BoardServiceImpl implements BoardService {
     private final BoardRepository boardRepository;
     private final UserRepository userRepository;
     private final BoardMapper boardMapper;
 
     @Override
+    @Transactional(readOnly = true)
     public List<BoardResponse> findAllByUserId(Long userId) {
         var userEntity = findUserById(userId);
 
@@ -30,6 +33,7 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public BoardResponse findByIdAndUserId(Long id, Long userId) {
         var userEntity = findUserById(userId);
 
@@ -72,8 +76,8 @@ public class BoardServiceImpl implements BoardService {
         boardRepository.save(board);
     }
 
-        private UserEntity findUserById(Long userId) {
-            return userRepository.findById(userId)
-                    .orElseThrow( () -> new EntityNotFoundException("User not found"));
-        }
+    private UserEntity findUserById(Long userId) {
+        return userRepository.findById(userId)
+                .orElseThrow( () -> new EntityNotFoundException("User not found"));
+    }
 }

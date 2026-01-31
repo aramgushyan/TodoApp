@@ -5,9 +5,9 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class TypeAddRequest {
-    private String name;
+public class TaskUpdateRequest {
+    private String title;
     private String description;
 
-    private Long userId;
+    private Long columnId;
 }

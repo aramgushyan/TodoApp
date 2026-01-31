@@ -4,9 +4,7 @@ import lombok.*;
 
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
 public class BoardAddRequest {
-    String name;
-    Long userId;
+    private String name;
+    private Long userId;
 }

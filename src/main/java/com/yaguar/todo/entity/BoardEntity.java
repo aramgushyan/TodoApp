@@ -6,7 +6,6 @@ import lombok.*;
 @Table( name = "boards")
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 @Entity
 public class BoardEntity {
@@ -17,7 +16,7 @@ public class BoardEntity {
     @Column(nullable = false)
     private String name;
 
-    @JoinColumn(name = "user_id", nullable = false)
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
     private UserEntity user;
 }
