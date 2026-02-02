@@ -16,7 +16,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 @Transactional
-public class UserServiceImpl implements UserService {
+class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
 
@@ -25,7 +25,6 @@ public class UserServiceImpl implements UserService {
     public UserResponse findUserById(Long id) {
         UserEntity userEntity = userRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("User not found"));
-
         return userMapper.toResponse(userEntity);
     }
 
@@ -33,7 +32,6 @@ public class UserServiceImpl implements UserService {
     @Transactional(readOnly = true)
     public List<UserResponse> findAllUsers() {
         List<UserEntity> userEntityList = userRepository.findAll();
-
         return userMapper.toResponseList(userEntityList);
     }
 
@@ -41,14 +39,12 @@ public class UserServiceImpl implements UserService {
     public Long addUser(UserAddRequest userRequest) {
         UserEntity userEntity = userMapper.toEntity(userRequest);
         userRepository.save(userEntity);
-
         return  userEntity.getId();
     }
 
     @Override
     public void deleteUser(Long id) {
         boolean isExist = userRepository.existsById(id);
-
         if (isExist) {
             userRepository.deleteById(id);
         }
@@ -61,7 +57,6 @@ public class UserServiceImpl implements UserService {
     public void updateUser(Long id,UserUpdateRequest userUpdateRequest) {
         UserEntity userEntity = userRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("User not found"));
-
         userMapper.updateEntityFromDto(userUpdateRequest, userEntity);
     }
 }

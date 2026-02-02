@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class TaskDaoImpl implements TaskDao {
+class TaskDaoImpl implements TaskDao {
     @PersistenceContext
     private EntityManager em;
     private Session session;

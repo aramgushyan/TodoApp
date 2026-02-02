@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Component
-public class TaskMapperImpl implements TaskMapper {
+class TaskMapperImpl implements TaskMapper {
     @Override
     public TaskEntity toEntity(TaskAddRequest taskAddRequest) {
         var task =  new TaskEntity();

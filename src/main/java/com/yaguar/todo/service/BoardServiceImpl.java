@@ -16,14 +16,12 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-@Transactional
-public class BoardServiceImpl implements BoardService {
+class BoardServiceImpl implements BoardService {
     private final BoardRepository boardRepository;
     private final UserRepository userRepository;
     private final BoardMapper boardMapper;
 
     @Override
-    @Transactional(readOnly = true)
     public List<BoardResponse> findAllByUserId(Long userId) {
         var userEntity = findUserById(userId);
 
@@ -33,7 +31,6 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    @Transactional(readOnly = true)
     public BoardResponse findByIdAndUserId(Long id, Long userId) {
         var userEntity = findUserById(userId);
 
@@ -54,8 +51,8 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public Long addBoard(BoardAddRequest boardAddRequest) {
-        var userEntity = findUserById(boardAddRequest.getUserId());
+    public Long addBoard(Long userId, BoardAddRequest boardAddRequest) {
+        var userEntity = findUserById(userId);
 
         var board = boardMapper.toEntity(boardAddRequest);
 

@@ -18,7 +18,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 @Transactional
-public class TypeServiceImpl implements TypeService {
+class TypeServiceImpl implements TypeService {
     private final TypeRepository typeRepository;
     private final UserRepository userRepository;
     private final TypeMapper typeMapper;
@@ -44,8 +44,8 @@ public class TypeServiceImpl implements TypeService {
     }
 
     @Override
-    public Long addUserType(TypeAddRequest typeAddRequest) {
-        var user =  findUserById(typeAddRequest.getUserId());
+    public Long addUserType(Long userId,TypeAddRequest typeAddRequest) {
+        var user =  findUserById(userId);
 
         var type = typeMapper.toEntity(typeAddRequest);
 

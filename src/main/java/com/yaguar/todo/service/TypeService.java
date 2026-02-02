@@ -11,7 +11,7 @@ public interface TypeService {
 
     TypeResponse findByIdAndUserId(Long id, Long userId);
 
-    Long addUserType(TypeAddRequest typeAddRequest);
+    Long addUserType(Long userId, TypeAddRequest typeAddRequest);
 
     void deleteByIdAndUserId(Long id, Long userId);
 

@@ -12,7 +12,6 @@ import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface ColumnMapper {
-    @Mapping(source = "boardId",target = "board.id")
     @Mapping(source = "typeId", target = "type.id")
     public ColumnEntity toEnity(ColumnAddRequest request);
 

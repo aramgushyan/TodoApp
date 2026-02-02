@@ -18,7 +18,6 @@ public interface BoardMapper {
 
     List<BoardResponse> toResponseList(List<BoardEntity> boardEntities);
 
-    @Mapping( source = "userId", target = "user.id")
     BoardEntity toEntity(BoardAddRequest boardAddResponse);
 
     void updateBoard(BoardUpdateRequest boardUpdateRequest, @MappingTarget BoardEntity boardEntity);

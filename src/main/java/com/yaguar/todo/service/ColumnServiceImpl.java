@@ -18,14 +18,12 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-@Transactional
-public class ColumnServiceImpl implements ColumnService {
+class ColumnServiceImpl implements ColumnService {
     private final ColumnRepository columnRepository;
     private final ColumnMapper columnMapper;
     private final BoardRepository boardRepository;
 
     @Override
-    @Transactional(readOnly = true)
     public List<ColumnResponse> findAllByBoardId(Long boardId) {
         var board = boardRepository.findById(boardId)
                 .orElseThrow(() -> new EntityNotFoundException("Board not found"));
@@ -34,7 +32,6 @@ public class ColumnServiceImpl implements ColumnService {
     }
 
     @Override
-    @Transactional(readOnly = true)
     public ColumnResponse findByIdAndBoardId(Long id, Long boardId) {
         var board = findBoardById(boardId);
 
@@ -53,8 +50,8 @@ public class ColumnServiceImpl implements ColumnService {
     }
 
     @Override
-    public Long addColumn(ColumnAddRequest columnAddRequest) {
-        var board = findBoardById(columnAddRequest.getBoardId());
+    public Long addColumn(Long boardId,ColumnAddRequest columnAddRequest) {
+        var board = findBoardById(boardId);
 
         var column = columnMapper.toEnity(columnAddRequest);
         columnRepository.save(column);

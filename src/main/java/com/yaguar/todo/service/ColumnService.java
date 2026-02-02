@@ -14,7 +14,7 @@ public interface ColumnService {
 
     public void deleteByIdAndBoardId(Long id, Long boardId);
 
-    public Long addColumn(ColumnAddRequest columnAddRequest);
+    public Long addColumn(Long boardId, ColumnAddRequest columnAddRequest);
 
     public void updateColumn(Long id, Long boardId, ColumnUpdateRequest columnUpdateRequest);
 }

@@ -13,7 +13,7 @@ public interface BoardService {
 
     void deleteByIdAndUserId(Long id, Long userId);
 
-    Long addBoard(BoardAddRequest boardAddRequest);
+    Long addBoard(Long userId, BoardAddRequest boardAddRequest);
 
     void updateBoard(BoardUpdateRequest boardUpdateRequest, Long userId, Long boardId);
 }

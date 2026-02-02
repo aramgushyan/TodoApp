@@ -15,20 +15,17 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-@Transactional
-public class TaskServiceImpl implements TaskService {
+class TaskServiceImpl implements TaskService {
     private final TaskMapper taskMapper;
     private final TaskDao taskDao;
     private final ColumnRepository columnRepository;
 
     @Override
-    @Transactional(readOnly = true)
     public List<TaskResponse> findAll() {
         return taskMapper.toResponse(taskDao.findAll());
     }
 
     @Override
-    @Transactional(readOnly = true)
     public TaskResponse findById(Long id) {
         var task = taskDao.findById(id);
         if (task == null)
