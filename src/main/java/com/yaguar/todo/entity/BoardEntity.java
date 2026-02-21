@@ -3,7 +3,7 @@ package com.yaguar.todo.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-@Table( name = "boards")
+@Table(name = "boards")
 @Getter
 @Setter
 @NoArgsConstructor

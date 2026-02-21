@@ -66,6 +66,8 @@ class ColumnServiceImpl implements ColumnService {
         var column = findColumnByIdAndBoard(id, board);
 
         columnMapper.updateEntity(columnUpdateRequest, column);
+
+        columnRepository.save(column);
     }
 
     private BoardEntity findBoardById(Long boardId) {

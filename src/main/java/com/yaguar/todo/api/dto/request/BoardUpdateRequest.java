@@ -5,10 +5,9 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
-@Setter
-public class BoardUpdateRequest {
-    @NotBlank(message = "Board name cannot be null or empty")
-    @Size(max = 50, message = "Max size is 50 symbols")
-    String name;
+public record BoardUpdateRequest(
+        @NotBlank(message = "Board name cannot be null or empty")
+        @Size(max = 50, message = "Max size is 50 symbols")
+        String name){
 }
+

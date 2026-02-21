@@ -17,10 +17,10 @@ class TaskMapperImpl implements TaskMapper {
         var task =  new TaskEntity();
         var columnEntity = new ColumnEntity();
 
-        columnEntity.setId(taskAddRequest.getColumnId());
+        columnEntity.setId(taskAddRequest.columnId());
 
-        task.setTitle(taskAddRequest.getTitle());
-        task.setDescription(taskAddRequest.getDescription());
+        task.setTitle(taskAddRequest.title());
+        task.setDescription(taskAddRequest.description());
         task.setCreatedAt(LocalDateTime.now());
         task.setColumn(columnEntity);
 
@@ -44,10 +44,10 @@ class TaskMapperImpl implements TaskMapper {
     @Override
     public TaskEntity updateEntity(TaskUpdateRequest taskUpdateRequest, TaskEntity taskEntity) {
         var columnEntity = new ColumnEntity();
-        columnEntity.setId(taskUpdateRequest.getColumnId());
+        columnEntity.setId(taskUpdateRequest.columnId());
 
-        taskEntity.setTitle(taskUpdateRequest.getTitle());
-        taskEntity.setDescription(taskUpdateRequest.getDescription());
+        taskEntity.setTitle(taskUpdateRequest.title());
+        taskEntity.setDescription(taskUpdateRequest.description());
         taskEntity.setUpdatedAt(LocalDateTime.now());
         taskEntity.setColumn(columnEntity);
 

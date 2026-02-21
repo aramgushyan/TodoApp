@@ -5,6 +5,7 @@ import com.yaguar.todo.api.dto.request.TypeUpdateRequest;
 import com.yaguar.todo.api.dto.response.TypeResponse;
 import com.yaguar.todo.entity.TypeEntity;
 import com.yaguar.todo.entity.UserEntity;
+import com.yaguar.todo.mapper.ColumnMapper;
 import com.yaguar.todo.mapper.TypeMapper;
 import com.yaguar.todo.repository.TypeRepository;
 import com.yaguar.todo.repository.UserRepository;
@@ -17,14 +18,13 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-@Transactional
 class TypeServiceImpl implements TypeService {
     private final TypeRepository typeRepository;
     private final UserRepository userRepository;
+    private final ColumnMapper columnMapper;
     private final TypeMapper typeMapper;
 
     @Override
-    @Transactional(readOnly = true)
     public List<TypeResponse> findAllByUserId(Long userId) {
         var user =  findUserById(userId);
 
@@ -34,13 +34,15 @@ class TypeServiceImpl implements TypeService {
     }
 
     @Override
-    @Transactional(readOnly = true)
     public TypeResponse findByIdAndUserId(Long id, Long userId) {
         var user = findUserById(userId);
 
         var type = findTypeById(id, user);
 
-        return typeMapper.toResponse(type);
+        var t = typeMapper.toResponse(type);
+
+        t.setColumns(columnMapper.toResponseList(type.getColumns()));
+        return t;
     }
 
     @Override

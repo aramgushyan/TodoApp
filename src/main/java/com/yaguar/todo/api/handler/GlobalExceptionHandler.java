@@ -32,7 +32,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<BadResponse> handleException(Exception exception) {
         BadResponse response = new BadResponse(
                 HttpStatus.INTERNAL_SERVER_ERROR.value(),
-                "Internal Server Error");
+                exception.getMessage());
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
     }
 }

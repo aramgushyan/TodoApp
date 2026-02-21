@@ -3,9 +3,6 @@ package com.yaguar.todo.dao;
 import com.yaguar.todo.entity.TaskEntity;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
-import jakarta.transaction.Transactional;
-import lombok.RequiredArgsConstructor;
-import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -14,7 +11,6 @@ import java.util.List;
 class TaskDaoImpl implements TaskDao {
     @PersistenceContext
     private EntityManager em;
-    private Session session;
 
     public List<TaskEntity> findAll() {
         return em.createQuery("SELECT t FROM TaskEntity t", TaskEntity.class).getResultList();
@@ -26,7 +22,6 @@ class TaskDaoImpl implements TaskDao {
 
     public Long addTask(TaskEntity task) {
         em.persist(task);
-
         return task.getId();
     }
 

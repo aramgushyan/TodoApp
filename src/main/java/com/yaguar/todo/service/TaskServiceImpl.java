@@ -9,7 +9,6 @@ import com.yaguar.todo.repository.ColumnRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -36,7 +35,7 @@ class TaskServiceImpl implements TaskService {
 
     @Override
     public Long addTask(TaskAddRequest taskAddRequest) {
-        var column = columnRepository.findById(taskAddRequest.getColumnId())
+        var column = columnRepository.findById(taskAddRequest.columnId())
                 .orElseThrow(() -> new EntityNotFoundException("Column not found"));
 
         var task = taskMapper.toEntity(taskAddRequest);

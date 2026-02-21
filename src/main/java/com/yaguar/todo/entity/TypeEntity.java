@@ -3,6 +3,8 @@ package com.yaguar.todo.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Table (name = "types")
 @Entity
 @Getter
@@ -20,6 +22,9 @@ public class TypeEntity {
     private String description;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id",  nullable = false )
+    @JoinColumn(name = "user_id", nullable = false)
     private UserEntity user;
+
+    @OneToMany(mappedBy = "type", fetch = FetchType.LAZY)
+    private List<ColumnEntity> columns;
 }

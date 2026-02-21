@@ -66,7 +66,7 @@ class BoardServiceImpl implements BoardService {
         var userEntity = findUserById(userId);
 
         var board = boardRepository.findByIdAndUser(boardId, userEntity)
-                .orElseThrow( () -> new EntityNotFoundException("Board not found"));
+                .orElseThrow(() -> new EntityNotFoundException("Board not found"));
 
         boardMapper.updateBoard(boardUpdateRequest, board);
 
@@ -75,6 +75,6 @@ class BoardServiceImpl implements BoardService {
 
     private UserEntity findUserById(Long userId) {
         return userRepository.findById(userId)
-                .orElseThrow( () -> new EntityNotFoundException("User not found"));
+                .orElseThrow(() -> new EntityNotFoundException("User not found"));
     }
 }
